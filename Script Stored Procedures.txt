@@ -1,0 +1,28 @@
+DELIMITER $$
+CREATE PROCEDURE agregar_producto(
+    IN p_nombre_producto VARCHAR(150),
+    IN p_descripcion TEXT,
+    IN p_precio_unitario DECIMAL(10,2),
+    IN p_id_proveedor INT,
+    IN p_id_categoria INT,
+    IN p_stock_inicial INT,
+    IN p_stock_minimo INT
+)
+BEGIN
+    INSERT INTO producto (nombre_producto, descripcion, precio_unitario, id_proveedor, id_categoria, stock_actual, stock_minimo)
+    VALUES (p_nombre_producto, p_descripcion, p_precio_unitario, p_id_proveedor, p_id_categoria, p_stock_inicial, p_stock_minimo);
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE generar_venta(
+    IN p_id_producto INT,
+    IN p_cantidad INT
+)
+BEGIN
+    DECLARE precio DECIMAL(10, 2);
+    SELECT precio_unitario INTO precio FROM producto WHERE id_producto = p_id_producto;
+    INSERT INTO ventas (id_producto, cantidad, total) VALUES (p_id_producto, p_cantidad, precio * p_cantidad);
+END$$
+DELIMITER ;

@@ -1,0 +1,155 @@
+-- Insertar departamentos
+INSERT INTO departamento (nombre_departamento, descripcion) VALUES
+('Ventas', 'Departamento encargado de las ventas'),
+('Logística', 'Departamento de logística y distribución'),
+('Recursos Humanos', 'Gestión de personal y reclutamiento'),
+('Finanzas', 'Manejo de las finanzas de la empresa'),
+('Marketing', 'Promoción y publicidad de productos'),
+('Desarrollo', 'Desarrollo de nuevos productos'),
+('Soporte Técnico', 'Atención al cliente y soporte técnico'),
+('Compras', 'Adquisición de productos y servicios'),
+('Administración', 'Administración general de la empresa'),
+('Calidad', 'Control de calidad de los productos');
+
+-- Insertar empleados
+INSERT INTO empleado (nombre, apellido, id_departamento, puesto, fecha_contratacion, salario) VALUES
+('Juan', 'Pérez', 1, 'Vendedor', '2023-01-15', 2500.00),
+('Ana', 'Gómez', 2, 'Logística', '2022-11-10', 2200.00),
+('Luis', 'Fernández', 3, 'HR Manager', '2022-05-05', 3000.00),
+('María', 'López', 4, 'Contadora', '2021-12-01', 2800.00),
+('Pedro', 'Martínez', 5, 'Director de Marketing', '2022-06-15', 3500.00),
+('Laura', 'Jiménez', 6, 'Desarrolladora', '2023-03-20', 3200.00),
+('Carlos', 'Ramírez', 7, 'Soporte', '2023-04-25', 2300.00),
+('Sofía', 'Hernández', 8, 'Compradora', '2022-09-30', 2400.00),
+('Ricardo', 'Morales', 9, 'Administrador', '2021-10-05', 3600.00),
+('Valeria', 'Vásquez', 10, 'Inspector de Calidad', '2023-02-18', 2700.00);
+
+-- Insertar proveedores
+INSERT INTO proveedor (nombre_proveedor, telefono, email, direccion, ciudad, pais) VALUES
+('Proveedor A', '555-1234', 'contacto@proveedora.com', 'Calle Falsa 123', 'Madrid', 'España'),
+('Proveedor B', '555-5678', 'info@proveedorb.com', 'Avenida Principal 456', 'Barcelona', 'España'),
+('Proveedor C', '555-8765', 'ventas@proveedorc.com', 'Paseo del Río 789', 'Valencia', 'España'),
+('Proveedor D', '555-4321', 'atencion@proveedord.com', 'Plaza Mayor 321', 'Sevilla', 'España'),
+('Proveedor E', '555-2468', 'contacto@proveedore.com', 'Calle del Sol 654', 'Bilbao', 'España'),
+('Proveedor F', '555-1357', 'info@proveedorf.com', 'Avenida del Norte 987', 'Murcia', 'España'),
+('Proveedor G', '555-2468', 'ventas@proveedorg.com', 'Calle del Centro 135', 'Zaragoza', 'España'),
+('Proveedor H', '555-3698', 'atencion@proveedorh.com', 'Paseo de la Paz 246', 'Granada', 'España'),
+('Proveedor I', '555-1597', 'contacto@proveedori.com', 'Calle Nueva 753', 'Alicante', 'España'),
+('Proveedor J', '555-7531', 'info@proveedorj.com', 'Avenida de la Libertad 852', 'Córdoba', 'España');
+
+-- Insertar categorías
+INSERT INTO categoria (nombre_categoria, descripcion) VALUES
+('Electrónica', 'Dispositivos electrónicos y gadgets'),
+('Ropa', 'Prendas de vestir para todos los géneros'),
+('Alimentos', 'Productos alimenticios y bebidas'),
+('Hogar', 'Artículos para el hogar y decoración'),
+('Jardinería', 'Herramientas y productos para el jardín'),
+('Belleza', 'Cosméticos y productos de cuidado personal'),
+('Deportes', 'Equipamiento deportivo y ropa deportiva'),
+('Música', 'Instrumentos musicales y accesorios'),
+('Juguetes', 'Juguetes para niños y juegos educativos'),
+('Libros', 'Literatura y libros de texto');
+
+-- Insertar productos
+INSERT INTO producto (nombre_producto, descripcion, precio_unitario, id_proveedor, id_categoria, stock_actual, stock_minimo) VALUES
+('Smartphone X', 'Último modelo de smartphone', 700.00, 1, 1, 50, 10),
+('Camiseta Básica', 'Camiseta de algodón, varios colores', 15.00, 2, 2, 200, 30),
+('Botella de Agua', 'Botella reutilizable de acero inoxidable', 25.00, 3, 3, 100, 20),
+('Sofá Moderno', 'Sofá de dos plazas, color gris', 400.00, 4, 4, 20, 5),
+('Pala de Jardín', 'Pala de jardín de acero', 18.00, 5, 5, 75, 15),
+('Crema Hidratante', 'Crema para el rostro, hidratante', 30.00, 6, 6, 150, 25),
+('Pelota de Fútbol', 'Pelota de fútbol de alta calidad', 20.00, 7, 7, 80, 10),
+('Guitarra Acústica', 'Guitarra acústica de madera', 150.00, 8, 8, 30, 5),
+('Juguete Educativo', 'Juego educativo para niños', 35.00, 9, 9, 90, 15),
+('Libro de Cocina', 'Recetario de cocina internacional', 25.00, 10, 10, 60, 10);
+
+-- Insertar movimientos de stock
+INSERT INTO movimiento_stock (id_producto, id_tipo_movimiento, cantidad, fecha_movimiento, descripcion) VALUES
+(1, 1, 10, '2024-10-01', 'Recepción de 10 unidades'),
+(2, 1, 20, '2024-10-02', 'Recepción de 20 unidades'),
+(3, 1, 15, '2024-10-03', 'Recepción de 15 unidades'),
+(4, 1, 5, '2024-10-04', 'Recepción de 5 unidades'),
+(5, 1, 25, '2024-10-05', 'Recepción de 25 unidades'),
+(1, 2, 5, '2024-10-06', 'Venta de 5 unidades'),
+(2, 2, 10, '2024-10-07', 'Venta de 10 unidades'),
+(3, 2, 8, '2024-10-08', 'Venta de 8 unidades'),
+(4, 2, 3, '2024-10-09', 'Venta de 3 unidades'),
+(5, 2, 12, '2024-10-10', 'Venta de 12 unidades');
+
+-- Insertar ventas
+INSERT INTO ventas (id_producto, cantidad, total, fecha_venta) VALUES
+(1, 2, 1400.00, '2024-10-01'),
+(2, 1, 15.00, '2024-10-02'),
+(3, 3, 75.00, '2024-10-03'),
+(4, 1, 400.00, '2024-10-04'),
+(5, 4, 72.00, '2024-10-05'),
+(6, 3, 90.00, '2024-10-06'),
+(7, 2, 40.00, '2024-10-07'),
+(8, 1, 150.00, '2024-10-08'),
+(9, 5, 175.00, '2024-10-09'),
+(10, 2, 50.00, '2024-10-10');
+
+-- Insertar clientes
+INSERT INTO cliente (nombre_cliente, telefono, email, direccion, ciudad, pais) VALUES
+('Carlos Ruiz', '555-0001', 'carlos.ruiz@example.com', 'Calle A 1', 'Madrid', 'España'),
+('Teresa Salas', '555-0002', 'teresa.salas@example.com', 'Calle B 2', 'Barcelona', 'España'),
+('Fernando Torres', '555-0003', 'fer.torres@example.com', 'Calle C 3', 'Valencia', 'España'),
+('Natalia Gómez', '555-0004', 'natalia.gomez@example.com', 'Calle D 4', 'Sevilla', 'España'),
+('Luis Martínez', '555-0005', 'luis.martinez@example.com', 'Calle E 5', 'Bilbao', 'España'),
+('Claudia Jiménez', '555-0006', 'claudia.jimenez@example.com', 'Calle F 6', 'Murcia', 'España'),
+('Pedro Álvarez', '555-0007', 'pedro.alvarez@example.com', 'Calle G 7', 'Zaragoza', 'España'),
+('Sofía Morales', '555-0008', 'sofia.morales@example.com', 'Calle H 8', 'Granada', 'España'),
+('Javier Fernández', '555-0009', 'javier.fernandez@example.com', 'Calle I 9', 'Alicante', 'España'),
+('Valentina López', '555-0010', 'valentina.lopez@example.com', 'Calle J 10', 'Córdoba', 'España');
+
+-- Insertar facturas
+INSERT INTO factura (id_cliente, id_venta, fecha_emision, total) VALUES
+(1, 1, '2024-10-02', 1400.00),
+(2, 2, '2024-10-03', 15.00),
+(3, 3, '2024-10-04', 75.00),
+(4, 4, '2024-10-05', 400.00),
+(5, 5, '2024-10-06', 72.00),
+(6, 6, '2024-10-07', 90.00),
+(7, 7, '2024-10-08', 40.00),
+(8, 8, '2024-10-09', 150.00),
+(9, 9, '2024-10-10', 175.00),
+(10, 10, '2024-10-11', 50.00);
+
+-- Insertar descuentos
+INSERT INTO descuento (porcentaje, fecha_inicio, fecha_fin) VALUES
+(10.00, '2024-10-01', '2024-10-31'),
+(15.00, '2024-11-01', '2024-11-30'),
+(5.00, '2024-12-01', '2024-12-31'),
+(20.00, '2024-10-15', '2024-10-20'),
+(30.00, '2024-10-10', '2024-10-15'),
+(25.00, '2024-11-01', '2024-11-15'),
+(10.00, '2024-10-01', '2024-10-31'),
+(5.00, '2024-11-15', '2024-11-30'),
+(15.00, '2024-12-15', '2024-12-31'),
+(20.00, '2024-10-01', '2024-10-10');
+
+-- Insertar proveedores_productos
+INSERT INTO proveedores_productos (id_proveedor, id_producto) VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5),
+(3, 6),
+(4, 7),
+(5, 8),
+(6, 9),
+(7, 10);
+
+-- Insertar promociones
+INSERT INTO promociones (nombre_promocion, descuento_id, fecha_inicio, fecha_fin) VALUES
+('Descuento de Primavera', 1, '2024-10-01', '2024-10-31'),
+('Black Friday', 2, '2024-11-01', '2024-11-30'),
+('Descuento de Navidad', 3, '2024-12-01', '2024-12-31'),
+('Días de Descuento', 4, '2024-10-15', '2024-10-20'),
+('Semana de Descuentos', 5, '2024-10-10', '2024-10-15'),
+('Descuentos Especiales', 6, '2024-11-01', '2024-11-15'),
+('Promociones de Otoño', 7, '2024-10-01', '2024-10-31'),
+('Descuentos de Invierno', 8, '2024-11-15', '2024-11-30'),
+('Ofertas Navideñas', 9, '2024-12-15', '2024-12-31'),
+('Promociones de Fin de Año', 10, '2024-10-01', '2024-10-10');

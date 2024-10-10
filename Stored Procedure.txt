@@ -1,0 +1,46 @@
+DELIMITER 
+
+CREATE PROCEDURE agregar_producto(
+    IN p_nombre_producto VARCHAR(150),
+    IN p_descripcion TEXT,
+    IN p_precio_unitario DECIMAL(10,2),
+    IN p_id_proveedor INT,
+    IN p_id_categoria INT,
+    IN p_stock_inicial INT,
+    IN p_stock_minimo INT
+)
+BEGIN
+    IF p_stock_inicial < p_stock_minimo THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: El stock inicial no puede ser menor que el stock mínimo.';
+    ELSE
+        INSERT INTO producto (nombre_producto, descripcion, precio_unitario, id_proveedor, id_categoria, stock_actual, stock_minimo)
+        VALUES (p_nombre_producto, p_descripcion, p_precio_unitario, p_id_proveedor, p_id_categoria, p_stock_inicial, p_stock_minimo);
+    END IF;
+END
+
+DELIMITER ;
+
+DELIMITER 
+
+CREATE PROCEDURE generar_venta(
+    IN p_id_producto INT,
+    IN p_cantidad INT
+)
+BEGIN
+    DECLARE precio DECIMAL(10, 2);
+    DECLARE stock_disponible INT;
+    
+    SELECT stock_actual INTO stock_disponible FROM producto WHERE id_producto = p_id_producto;
+    IF stock_disponible < p_cantidad THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: Stock insuficiente para la venta.';
+    ELSE
+        SELECT precio_unitario INTO precio FROM producto WHERE id_producto = p_id_producto;
+        
+        INSERT INTO ventas (id_producto, cantidad, precio_unitario, total) 
+        VALUES (p_id_producto, p_cantidad, precio, precio * p_cantidad);
+        
+        UPDATE producto SET stock_actual = stock_actual - p_cantidad WHERE id_producto = p_id_producto;
+    END IF;
+END
+
+DELIMITER ;

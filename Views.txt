@@ -1,0 +1,27 @@
+
+CREATE VIEW vista_productos_bajo_minimo AS
+SELECT nombre_producto, stock_actual, stock_minimo
+FROM producto
+WHERE stock_actual < stock_minimo;
+
+CREATE VIEW vista_ventas_recientes AS
+SELECT v.id_venta, p.nombre_producto, v.cantidad, v.fecha_venta, v.total
+FROM ventas v
+JOIN producto p ON v.id_producto = p.id_producto
+ORDER BY v.fecha_venta DESC
+LIMIT 10;
+
+CREATE VIEW vista_empleados_departamento AS
+SELECT CONCAT(e.nombre, ' ', e.apellido) AS nombre_completo, d.nombre_departamento
+FROM empleado e
+JOIN departamento d ON e.id_departamento = d.id_departamento;
+
+CREATE VIEW vista_productos_categoria AS
+SELECT c.nombre_categoria, p.nombre_producto, p.precio_unitario
+FROM producto p
+JOIN categoria c ON p.id_categoria = c.id_categoria;
+
+CREATE VIEW vista_proveedores_productos AS
+SELECT pr.nombre_proveedor, p.nombre_producto, p.precio_unitario
+FROM proveedor pr
+JOIN producto p ON p.id_proveedor = pr.id_proveedor;

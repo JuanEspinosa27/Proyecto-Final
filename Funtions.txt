@@ -1,0 +1,33 @@
+DELIMITER 
+
+CREATE FUNCTION total_ventas_periodo(
+    p_fecha_inicio DATE,
+    p_fecha_fin DATE
+)
+RETURNS DECIMAL(10, 2)
+BEGIN
+    DECLARE total DECIMAL(10, 2);
+    
+    SELECT SUM(total) INTO total
+    FROM ventas
+    WHERE fecha_venta BETWEEN p_fecha_inicio AND p_fecha_fin;
+    
+    RETURN total;
+END
+
+DELIMITER ;
+
+DELIMITER
+
+CREATE FUNCTION total_productos_stock()
+RETURNS INT
+BEGIN
+    DECLARE total INT;
+    
+    SELECT SUM(stock_actual) INTO total
+    FROM producto;
+    
+    RETURN total;
+END
+
+DELIMITER ;

@@ -1,0 +1,28 @@
+DELIMITER 
+
+CREATE TRIGGER actualizar_total_venta
+BEFORE INSERT ON ventas
+FOR EACH ROW
+BEGIN
+    DECLARE precio DECIMAL(10, 2);
+    
+    SELECT precio_unitario INTO precio FROM producto WHERE id_producto = NEW.id_producto;
+    
+    -- Asignar el precio y calcular el total
+    SET NEW.precio_unitario = precio;
+    SET NEW.total = precio * NEW.cantidad;
+END
+
+DELIMITER ;
+
+
+DELIMITER 
+
+CREATE TRIGGER verificar_stock_minimo
+AFTER UPDATE ON producto
+FOR EACH ROW
+BEGIN
+advertencia
+    IF NEW.stock_actual < NEW.stock_minimo THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Advertencia:
+
